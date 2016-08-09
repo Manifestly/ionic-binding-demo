@@ -1,14 +1,30 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Binding Demo
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+  <ion-list>
+    <template ngFor let-step [ngForOf]="steps">
+      <ion-item *ngIf="step.header_step">
+        <ion-label text-uppercase class="header">{{step.title}}</ion-label>
+      </ion-item>
+      <ion-item-sliding *ngIf="!step.header_step">
+        <button ion-item>
+          <ion-label *ngIf="!!step.completed_at" text-line-through>
+          {{step.completed_at}}:
+          {{step.title}}
+          </ion-label>
+          <ion-label *ngIf="!step.completed_at">
+          {{step.title}}
+          </ion-label>
+        </button>
+        <ion-item-options side="left" (ionSwipe)="toggleStep(step)">
+        </ion-item-options>
+      </ion-item-sliding>
+    </template>
+  </ion-list>
 </ion-content>
