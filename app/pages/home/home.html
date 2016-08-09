@@ -13,7 +13,7 @@
         <ion-label text-uppercase class="header">{{step.title}}</ion-label>
       </ion-item>
       <ion-item-sliding *ngIf="!step.header_step">
-        <button ion-item>
+        <button ion-item (click)="toggleStep(step)">
           <ion-label *ngIf="!!step.completed_at" text-line-through>
           {{step.completed_at}}:
           {{step.title}}
